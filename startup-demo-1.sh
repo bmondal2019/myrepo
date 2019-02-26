@@ -29,7 +29,8 @@ echo "================================================================"
 docker build -t jackie-image:v0.0.1 .
 echo "================================================================"
 docker run -it -d -p 9000:3000 -p 6005:6005 --restart always --name jackie-container jackie-image:v0.0.1
-tail -f `docker inspect --format='{{.LogPath}}' jackie-image-container` > $log &
+docker logs -f jackie-container >> $log &
+#tail -f `docker inspect --format='{{.LogPath}}' jackie-image-container` > $log &
 echo "================================================================"
 echo "Find the console logs in ${log}"
 exit
